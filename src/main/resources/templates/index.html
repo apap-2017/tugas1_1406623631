@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Sistem Informasi Kependudukan - Pemerintahan Provinsi DKI
+	Jakarta</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Navbar</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="/penduduk">Penduduk</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/keluarga">Keluarga</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/penduduk/cari">Cari
+						Data</a></li>
+			</ul>
+
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="text" placeholder="Search"
+					aria-label="Search" />
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+					Search</button>
+			</form>
+		</div>
+	</nav>
+
+	<div class="content home">
+		<h1>
+			<center>Sistem Informasi Kependudukan Online Provinsi DKI
+				Jakarta</center>
+		</h1>
+		<br></br>
+		<form class="inputAction" action="/penduduk" method="get">
+			<h3>
+				<center>Lihat Data Penduduk Berdasarkan NIK</center>
+			</h3>
+			<center>
+				<label for="nik">Masukkan Nomor Induk Kependudukan:</label>
+			</center>
+			<center>
+				<input type="text" name="nik"
+					placeholder="Nomor Induk Kependudukan (NIK)" />
+			</center>
+			<br></br>
+			<center>
+				<button type="submit">
+					<span class="icon-penduduk"></span> Lihat
+				</button>
+			</center>
+		</form>
+		<div class="divider"></div>
+		<form class="inputAction" action="/keluarga" method="get">
+			<br></br>
+			<br></br>
+			<center>
+				<h3>Lihat Data Keluarga Berdasarkan NKK</h3>
+			</center>
+			<center>
+				<label for="nkk">Masukkan Nomor Kartu Keluarga:</label>
+			</center>
+			<center>
+				<input type="text" name="nkk"
+					placeholder="Nomor Kartu Keluarga (NKK)" />
+			</center>
+			<br></br>
+			<center>
+				<button type="submit">
+					<span class="icon-keluarga"></span> Lihat
+				</button>
+			</center>
+		</form>
+	</div>
+</body>
+</html>

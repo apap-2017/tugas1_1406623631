@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title
+	th:text="'Ubah Keluarga ' + ${keluarga.nomor_kk} + ' - Sistem Informasi Kependudukan - Pemerintahan Provinsi DKI Jakarta'">Keluarga
+	- Sistem Informasi Kependudukan - Pemerintahan Provinsi DKI Jakarta</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Navbar</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="/penduduk">Penduduk</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/keluarga">Keluarga</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/penduduk/cari">Cari
+						Data</a></li>
+			</ul>
+
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="text" placeholder="Search"
+					aria-label="Search" />
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+					Search</button>
+			</form>
+		</div>
+	</nav>
+	<div class="content keluarga">
+		<div class="breadcrumbs"></div>
+		<h1>
+			<center>Ubah Data Keluarga</center>
+		</h1>
+		<form class="inputAction add"
+			th:action="'/keluarga/ubah/submit/' + ${keluarga.nomor_kk}"
+			th:object="${keluarga}" method="post">
+			<center>
+				<h3 th:text="'NKK: ' + ${keluarga.nomor_kk}">NKK</h3>
+			</center>
+			<br></br>
+			<center>
+				<label for="alamat">Alamat Keluarga</label>
+			</center>
+			<center>
+				<input type="text" name="alamat" required="required"
+					placeholder="Masukkan Alamat Keluarga" th:field="*{alamat}"
+					th:value="${keluarga.alamat}" />
+			</center>
+			<br></br>
+			<center>
+				<label for="rt">RT:</label>
+			</center>
+			<center>
+				<input type="number" name="rt" required="required"
+					placeholder="Masukkan RT Alamat Keluarga" th:field="*{rt}"
+					th:value="${keluarga.rt}" />
+			</center>
+			<br></br>
+			<center>
+				<label for="rw">RW:</label>
+			</center>
+			<center>
+				<input type="number" name="rw" required="required"
+					placeholder="Masukkan RW Alamat Keluarga" th:field="*{rw}"
+					th:value="${keluarga.rw}" />
+			</center>
+			<br></br>
+			<center>
+				<label for="id_kelurahan">Kelurahan (Akan Otomatis Memilih
+					Kecamatan &amp; Kota:</label>
+			</center>
+			<center>
+				<select name="id_kelurahan" required="required" th:field="*{id_kelurahan}"
+					th:value="${keluarga.id_kelurahan}">
+					<option th:each="kelurahan,iterationStatus: ${daftarKelurahan}"
+						th:value="${kelurahan.id}" th:text="${kelurahan.nama_kelurahan}">Nama
+						Kelurahan</option>
+				</select>
+			</center>
+			<br></br>
+			<center>
+				<button type="submit">
+					<span class="icon-penduduk-add"></span> Ubah
+				</button>
+			</center>
+		</form>
+	</div>
+</body>
+</html>

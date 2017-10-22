@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Cari Penduduk - Sistem Informasi Kependudukan -
+	Pemerintahan Provinsi DKI Jakarta</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Navbar</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="/penduduk">Penduduk</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/keluarga">Keluarga</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/penduduk/cari">Cari
+						Data</a></li>
+			</ul>
+
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="text" placeholder="Search"
+					aria-label="Search" />
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+					Search</button>
+			</form>
+		</div>
+	</nav>
+	<div class="content cari">
+		<div class="breadcrumbs"></div>
+		<center>
+			<h1>Cari Penduduk</h1>
+		</center>
+		<br></br>
+		<form class="inputAction">
+
+			<div class="selectContainer">
+				<div class="selectItem">
+					<center>
+						<label for="kt">Kota / Kabupaten:</label>
+					</center>
+					<center>
+						<select th:if="${kt == null}" name="kt" id="inputKota">
+							<option disabled="disabled" selected="true">Pilih Kota /
+								Kabupaten</option>
+							<option th:each="kota,iterationStatus: ${listKota}"
+								th:value="${kota.id}" th:text="${kota.nama_kota}">Nama
+								Kota</option>
+						</select> <select th:if="${kt != null}" th:value="${kt}" name="kt"
+							id="inputKota">
+							<option th:each="kota,iterationStatus: ${listKota}"
+								th:value="${kota.id}" th:text="${kota.nama_kota}"
+								th:selected="${kota.id == kt}">Nama Kota</option>
+						</select>
+					</center>
+				</div>
+				<br></br>
+				<div class="selectItem">
+					<center>
+						<label for="kc">Kecamatan:</label>
+					</center>
+					<center>
+						<select th:if="${listKecamatan != null and kc != null}"
+							th:value="${kc}" name="kc" id="inputKecamatan">
+							<option th:each="kecamatan,iterationStatus: ${listKecamatan}"
+								th:value="${kecamatan.id}" th:text="${kecamatan.nama_kecamatan}"
+								th:selected="${kecamatan.id == kc}">Nama Kecamatan</option>
+						</select> <select th:if="${listKecamatan != null and kc == null}" name="kc"
+							id="inputKecamatan">
+							<option selected="selected" disabled="disabled">Pilih
+								Kecamatan</option>
+							<option th:each="kecamatan,iterationStatus: ${listKecamatan}"
+								th:value="${kecamatan.id}" th:text="${kecamatan.nama_kecamatan}">Nama
+								Kecamatan</option>
+						</select>
+					</center>
+					<center>
+						<select th:if="${listKecamatan == null}" name="kc"
+							id="inputKecamatan" disabled="disabled">
+							<option selected="selected" disabled="disabled">Pilih
+								Kecamatan</option>
+						</select>
+					</center>
+				</div>
+				<br></br>
+				<div class="selectItem">
+					<center>
+						<label for="kl">Kelurahan:</label>
+					</center>
+					<center>
+						<select th:if="${listKelurahan != null}" name="kl"
+							id="inputKelurahan">
+							<option selected="selected" disabled="disabled">Pilih
+								Kelurahan</option>
+							<option th:each="kelurahan,iterationStatus: ${listKelurahan}"
+								th:value="${kelurahan.id}" th:text="${kelurahan.nama_kelurahan}">Nama
+								Kelurahan</option>
+						</select> <select th:if="${listKelurahan == null}" name="kl"
+							id="inputKelurahan" disabled="disabled">
+							<option selected="selected" disabled="disabled">Pilih
+								Kelurahan</option>
+						</select>
+					</center>
+				</div>
+			</div>
+			<br></br>
+			<center>
+				<button id="submitButton" type="submit" disabled="disabled">
+					<span class="icon-cari-keluarga"></span> Cari
+				</button>
+			</center>
+		</form>
+	</div>
+	<script type="text/javascript" th:src="@{/js/cari.js}" />
+</body>
+</html>

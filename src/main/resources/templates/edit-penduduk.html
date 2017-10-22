@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title
+	th:text="'Ubah Data Penduduk ' + ${penduduk.nik} + ' - Sistem Informasi Kependudukan - Pemerintahan Provinsi DKI Jakarta'">Ubah
+	Data Penduduk - Sistem Informasi Kependudukan - Pemerintahan Provinsi
+	DKI Jakarta</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Navbar</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="/penduduk">Penduduk</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/keluarga">Keluarga</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/penduduk/cari">Cari
+						Data</a></li>
+			</ul>
+
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="text" placeholder="Search"
+					aria-label="Search" />
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+					Search</button>
+			</form>
+		</div>
+	</nav>
+	<div class="content penduduk">
+		<div class="breadcrumbs"></div>
+		<center>
+			<h1>Ubah Data Penduduk</h1>
+		</center>
+		<form class="inputAction add"
+			th:action="'/penduduk/ubah/submit/' + ${penduduk.nik}"
+			th:object="${penduduk}" method="post">
+			<center>
+				<h3 th:text="'NIK: ' + ${penduduk.nik}">NIK</h3>
+			</center>
+			<br></br>
+			<center>
+				<label for="nama">Nama Lengkap:</label>
+			</center>
+			<center>
+				<input type="text" name="nama" required="required" th:field="*{nama}"
+					th:value="${penduduk.nama}"
+					placeholder="Masukkan Nama Lengkap penduduk" />
+			</center>
+			<br></br>
+			<center>
+				<label for="tempat_lahir">Tempat Lahir:</label>
+			</center>
+			<center>
+				<input type="text" name="tempat_lahir" required="required" th:field="*{tempat_lahir}"
+					th:value="${penduduk.tempat_lahir}"
+					placeholder="Masukkan Tempat Lahir penduduk" />
+			</center>
+			<br></br>
+			<center>
+				<label for="tanggal_lahir">Tanggal Lahir:</label>
+			</center>
+			<center>
+				<input type="date" name="tanggal_lahir" required="required" th:field="*{tanggal_lahir}"
+					th:value="${penduduk.tanggal_lahir}"
+					placeholder="Masukkan Tanggal Lahir penduduk" />
+			</center>
+			<br></br>
+			<center>
+				<label for="jenis_kelamin">Jenis Kelamin:</label>
+			</center>
+			<center>
+				<select name="jenis_kelamin" required="required" th:field="*{jenis_kelamin}"
+					th:value="${penduduk.jenis_kelamin}">
+					<option value="0">Laki Laki</option>
+					<option value="1">Wanita</option>
+				</select>
+			</center>
+			<br></br>
+			<center>
+				<label for="is_wni">Seorang WNI:</label>
+			</center>
+			<center>
+				<select name="is_wni" required="required" th:field="*{is_wni}"
+					th:value="${penduduk.is_wni}">
+					<option value="0">Tidak</option>
+					<option value="1">Ya</option>
+				</select>
+			</center>
+			<br></br>
+			<center>
+				<label for="id_keluarga">ID Keluarga:</label>
+			</center>
+			<center>
+				<input type="number" name="id_keluarga" required="required" th:field="*{id_keluarga}"
+					th:value="${penduduk.id_keluarga}"
+					placeholder="Masukkan ID Keluarga" />
+			</center>
+			<br></br>
+			<center>
+				<label for="status_dalam_keluarga">Status Dalam Keluarga:</label>
+			</center>
+			<center>
+				<input type="text" name="status_dalam_keluarga"
+					required="required" th:field="*{status_dalam_keluarga}"
+					th:value="${penduduk.status_dalam_keluarga}"
+					placeholder="Masukkan Status Dalam Keluarga" /> <br></br>
+				<center>
+					<label for="agama">Agama:</label>
+				</center>
+				<center>
+					<select name="agama" required="required" th:field="*{agama}"
+						th:value="${penduduk.agama}">
+						<option value="Islam">Islam</option>
+						<option value="Kristen">Kristen</option>
+						<option value="Katolik">Katolik</option>
+						<option value="Budha">Budha</option>
+						<option value="Hindu">Hindu</option>
+						<option value="Khonghucu">Khonghucu</option>
+					</select>
+				</center>
+				<br></br> <label for="pekerjaan">Pekerjaan:</label>
+			</center>
+			<center>
+				<select name="pekerjaan" required="required" th:field="*{pekerjaan}"
+					th:value="${penduduk.pekerjaan}">
+					<option value="BELUM / TIDAK BEKERJA">BELUM / TIDAK
+						BEKERJA</option>
+					<option value="MENGURUS RUMAH TANGGA">MENGURUS RUMAH
+						TANGGA</option>
+					<option value="PELAJAR / MAHASISWA">PELAJAR / MAHASISWA</option>
+					<option value="PENSIUNAN">PENSIUNAN</option>
+					<option value="PEGAWAI NEGERI SIPIL">PEGAWAI NEGERI SIPIL</option>
+					<option value="TENTARA NASIONAL INDONESIA">TENTARA
+						NASIONAL INDONESIA</option>
+					<option value="KEPOLISIAN RI">KEPOLISIAN RI</option>
+					<option value="PERDAGANGAN">PERDAGANGAN</option>
+					<option value="PETANI / PEKEBUN">PETANI / PEKEBUN</option>
+					<option value="PETERNAK">PETERNAK</option>
+					<option value="NELAYAN / PERIKANAN">NELAYAN / PERIKANAN</option>
+					<option value="INDUSTRI">INDUSTRI</option>
+					<option value="KONSTRUKSI">KONSTRUKSI</option>
+					<option value="TRANSPORTASI">TRANSPORTASI</option>
+					<option value="KARYAWAN SWASTA">KARYAWAN SWASTA</option>
+					<option value="KARYAWAN BUMN">KARYAWAN BUMN</option>
+					<option value="KARYAWAN BUMD">KARYAWAN BUMD</option>
+					<option value="KARYAWAN HONORER">KARYAWAN HONORER</option>
+					<option value="BURUH HARIAN LEPAS">BURUH HARIAN LEPAS</option>
+					<option value="BURUH TANI / PERKEBUNAN">BURUH TANI /
+						PERKEBUNAN</option>
+					<option value="BURUH NELAYAN / PERIKANAN">BURUH NELAYAN /
+						PERIKANAN</option>
+					<option value="BURUH PETERNAKAN">BURUH PETERNAKAN</option>
+					<option value="PEMBANTU RUMAH TANGGA">PEMBANTU RUMAH
+						TANGGA</option>
+					<option value="TUKANG CUKUR">TUKANG CUKUR</option>
+					<option value="TUKANG LISTRIK">TUKANG LISTRIK</option>
+					<option value="TUKANG BATU">TUKANG BATU</option>
+					<option value="TUKANG KAYU">TUKANG KAYU</option>
+					<option value="TUKANG SOL SEPATU">TUKANG SOL SEPATU</option>
+					<option value="TUKANG LAS / PANDAI BESI">TUKANG LAS /
+						PANDAI BESI</option>
+					<option value="TUKANG JAHIT">TUKANG JAHIT</option>
+					<option value="PENATA RAMBUT">PENATA RAMBUT</option>
+					<option value="PENATA RIAS">PENATA RIAS</option>
+					<option value="PENATA BUSANA">PENATA BUSANA</option>
+					<option value="MEKANIK">MEKANIK</option>
+					<option value="TUKANG GIGI">TUKANG GIGI</option>
+					<option value="SENIMAN">SENIMAN</option>
+					<option value="TABIB">TABIB</option>
+					<option value="PARAJI">PARAJI</option>
+					<option value="PERANCANG BUSANA">PERANCANG BUSANA</option>
+					<option value="PENTERJEMAH">PENTERJEMAH</option>
+					<option value="IMAM MASJID">IMAM MASJID</option>
+					<option value="PENDETA">PENDETA</option>
+					<option value="PASTUR">PASTUR</option>
+					<option value="WARTAWAN">WARTAWAN</option>
+					<option value="USTADZ / MUBALIGH">USTADZ / MUBALIGH</option>
+					<option value="JURU MASAK">JURU MASAK</option>
+					<option value="PROMOTOR ACARA">PROMOTOR ACARA</option>
+					<option value="ANGGOTA DPR-RI">ANGGOTA DPR-RI</option>
+					<option value="ANGGOTA DPD">ANGGOTA DPD</option>
+					<option value="ANGGOTA BPK">ANGGOTA BPK</option>
+					<option value="PRESIDEN">PRESIDEN</option>
+					<option value="WAKIL PRESIDEN">WAKIL PRESIDEN</option>
+					<option value="ANGGOTA MAHKAMAH KONSTITUSI">ANGGOTA
+						MAHKAMAH KONSTITUSI</option>
+					<option value="ANGGOTA KABINET / KEMENTERIAN">ANGGOTA
+						KABINET / KEMENTERIAN</option>
+					<option value="DUTA BESAR">DUTA BESAR</option>
+					<option value="GUBERNUR">GUBERNUR</option>
+					<option value="WAKIL GUBERNUR">WAKIL GUBERNUR</option>
+					<option value="BUPATI">BUPATI</option>
+					<option value="WAKIL BUPATI">WAKIL BUPATI</option>
+					<option value="WALIKOTA">WALIKOTA</option>
+					<option value="WAKIL WALIKOTA">WAKIL WALIKOTA</option>
+					<option value="ANGGOTA DPRD PROPINSI">ANGGOTA DPRD
+						PROPINSI</option>
+					<option value="ANGGOTA DPRD KABUPATEN / KOTA">ANGGOTA DPRD
+						KABUPATEN / KOTA</option>
+					<option value="DOSEN">DOSEN</option>
+					<option value="GURU">GURU</option>
+					<option value="PILOT">PILOT</option>
+					<option value="PENGACARA">PENGACARA</option>
+					<option value="NOTARIS">NOTARIS</option>
+					<option value="ARSITEK">ARSITEK</option>
+					<option value="AKUNTAN">AKUNTAN</option>
+					<option value="KONSULTAN">KONSULTAN</option>
+					<option value="DOKTER">DOKTER</option>
+					<option value="BIDAN">BIDAN</option>
+					<option value="PERAWAT">PERAWAT</option>
+					<option value="APOTEKER">APOTEKER</option>
+					<option value="PSIKIATER / PSIKOLOG">PSIKIATER / PSIKOLOG</option>
+					<option value="PENYIAR TELEVISI">PENYIAR TELEVISI</option>
+					<option value="PENYIAR RADIO">PENYIAR RADIO</option>
+					<option value="PELAUT">PELAUT</option>
+					<option value="PENELITI">PENELITI</option>
+					<option value="SOPIR">SOPIR</option>
+					<option value="PIALANG">PIALANG</option>
+					<option value="PARANORMAL">PARANORMAL</option>
+					<option value="PEDAGANG">PEDAGANG</option>
+					<option value="PERANGKAT DESA">PERANGKAT DESA</option>
+					<option value="KEPALA DESA">KEPALA DESA</option>
+					<option value="BIARAWATI">BIARAWATI</option>
+					<option value="WIRASWASTA">WIRASWASTA</option>
+				</select>
+			</center>
+			<br></br>
+			<center>
+				<label for="status_perkawinan">Status Perkawinan:</label>
+			</center>
+			<center>
+				<input type="text" name="status_perkawinan"
+					required="required" th:field="*{status_perkawinan}"
+					th:value="${penduduk.status_perkawinan}"
+					placeholder="Masukkan Status Kawin" />
+			</center>
+			<br></br>
+			<center>
+				<label for="golongan_darah">Golongan Darah:</label>
+			</center>
+			<center>
+				<input type="text" name="golongan_darah" required="required"
+					th:field="*{golongan_darah}" th:value="${penduduk.golongan_darah}"
+					placeholder="Masukkan Golongan Darah" />
+			</center>
+			<br></br>
+			<center>
+				<button type="submit">
+					<span class="icon-penduduk"></span> Ubah
+				</button>
+			</center>
+		</form>
+	</div>
+</body>
+</html>

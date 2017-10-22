@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title
+	th:text="'Penduduk ' + ${penduduk.nik} + ' - Sistem Informasi Kependudukan - Pemerintahan Provinsi DKI Jakarta'">Penduduk
+	- Sistem Informasi Kependudukan - Pemerintahan Provinsi DKI Jakarta</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Navbar</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="/penduduk">Penduduk</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/keluarga">Keluarga</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/penduduk/cari">Cari
+						Data</a></li>
+			</ul>
+
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="text" placeholder="Search"
+					aria-label="Search" />
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+					Search</button>
+			</form>
+		</div>
+	</nav>
+	<div class="content penduduk">
+		<div class="breadcrumbs"></div>
+		<h2>
+			<center>Lihat Data Penduduk</center>
+		</h2>
+
+		<div class="biodata">
+
+			<form class="inputAction nonaktif" th:action="'/penduduk/mati/'"
+				th:object="${penduduk}" method="post"></form>
+
+			<p th:text="'NIK: ' + ${penduduk.nik}">NIK</p>
+
+			<p th:text="'Nama: ' + ${penduduk.nama}">Nama</p>
+
+			<p
+				th:text="${penduduk.tempat_lahir} + ', ' + ${penduduk.tanggal_lahir}">-,
+				-</p>
+
+			<p th:text="'Alamat: ' + ${keluarga.alamat}">Alamat</p>
+
+			<p th:text="'RT / RW: ' + ${keluarga.rt} + ' / ' + ${keluarga.rw}">RT
+				/ RW</p>
+
+			<p th:text="'Kelurahan: ' + ${kelurahan.nama_kelurahan}">Kelurahan</p>
+
+			<p th:text="'Kecamatan: ' + ${kecamatan.nama_kecamatan}">Kecamatan</p>
+
+			<p th:text="'Kota: ' + ${kota.nama_kota}">Kota</p>
+
+			<p th:if="${penduduk.jenis_kelamin == 0}">Laki Laki</p>
+			<p th:if="${penduduk.jenis_kelamin == 1}">Wanita</p>
+
+			<p th:text="'Golongan Darah: ' + ${penduduk.golongan_darah}">Golongan
+				Darah</p>
+
+			<p th:text="'Agama: ' + ${penduduk.agama}">Agama</p>
+
+			<p th:text="'Status Perkawinan: ' + ${penduduk.status_perkawinan}">Status
+				Perkawinan</p>
+
+			<p th:text="'Pekerjaan: ' + ${penduduk.pekerjaan}">Mahasiswa</p>
+
+			<p th:if="${penduduk.is_wni == 0}">WNA</p>
+			<p th:if="${penduduk.is_wni == 1}">WNI</p>
+
+			<p th:if="${penduduk.is_wafat == 0}">Hidup</p>
+			<p th:if="${penduduk.is_wafat == 1}">Meninggal</p>
+
+			<center>
+				<button th:if="${penduduk.is_wafat == 0}"
+					type="submit">Nonaktifkan</button>
+			</center>
+			<center>
+				<button th:if="${penduduk.is_wafat == 1}" type="submit"
+					disabled="disabled">Penduduk Non Aktif</button>
+			</center>
+			<br></br>
+			<center>
+				<a class="ubah" th:href="'/penduduk/ubah/' + ${penduduk.nik}"><span
+					class="icon-penduduk-edit"></span> Ubah Data</a>
+			</center>
+			<center>
+				<a class="linkTo" th:href="'/keluarga?nkk=' + ${keluarga.nomor_kk}"
+					target="_blank"><span class="icon-keluarga"></span> Lihat
+					Keluarga</a>
+			</center>
+
+		</div>
+	</div>
+</body>
+</html>

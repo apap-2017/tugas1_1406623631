@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title
+	th:text="'Penduduk di ' + ${kelurahan.nama_kelurahan} + ' - ' + ${kecamatan.nama_kecamatan} + ', ' + ${kota.nama_kota} + ' - Sistem Informasi Kependudukan - Pemerintahan Provinsi DKI Jakarta'">Hasil
+	Pencarian - Sistem Informasi Kependudukan - Pemerintahan Provinsi DKI
+	Jakarta</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/datatables.css" />
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Navbar</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="/penduduk">Penduduk</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/keluarga">Keluarga</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/penduduk/cari">Cari
+						Data</a></li>
+			</ul>
+
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="text" placeholder="Search"
+					aria-label="Search" />
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+					Search</button>
+			</form>
+		</div>
+	</nav>
+	<div class="content cari">
+		<div class="breadcrumbs"></div>
+		<center>
+		<h3>Hasil Pencarian</h3>
+		</center>
+		<center>
+		<p
+			th:text="'Semua Penduduk di ' + ${kelurahan.nama_kelurahan.toUpperCase()} + ', ' +  ${kecamatan.nama_kecamatan.toUpperCase()} + ', ' + ${kota.nama_kota.toUpperCase()}">Semua
+			Penduduk di Kelurahan, Kecamatan, Kota</p>
+		</center>
+		<table id="pendudukList">
+			<thead>
+				<tr>
+					<th>No</th>
+					<th>Nama Lengkap</th>
+					<th>NIK</th>
+					<th>Jenis Kelamin</th>
+					<th>Tempat Lahir</th>
+					<th>Tanggal Lahir</th>
+					<th>Agama</th>
+					<th>Pekerjaan</th>
+					<th>Status Perkawinan</th>
+					<th>Status Dalam Keluarga</th>
+					<th>Kewarganegaraan</th>
+					<th>Data</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="penduduk,iterationStatus: ${daftarPenduduk}">
+					<td th:text="${iterationStatus.count}">No</td>
+					<td th:text="${penduduk.nama}">Nama</td>
+					<td th:text="${penduduk.nik}">NIK</td>
+					<td th:if="${penduduk.jenis_kelamin == 0}">Laki Laki</td>
+					<td th:if="${penduduk.jenis_kelamin == 1}">Wanita</td>
+					<td th:text="${penduduk.tempat_lahir}">Tempat Lahir</td>
+					<td th:text="${penduduk.tanggal_lahir}">Tanggal Lahir</td>
+					<td th:text="${penduduk.agama}">Agama</td>
+					<td th:text="${penduduk.pekerjaan}">Pekerjaan</td>
+					<td th:text="${penduduk.status_perkawinan}">Status Perkawinan</td>
+					<td th:text="${penduduk.status_dalam_keluarga}">Status Dalam
+						Keluarga</td>
+					<td th:if="${penduduk.is_wni == 0}">WNA</td>
+					<td th:if="${penduduk.is_wni == 1}">WNI</td>
+					<td><a th:href="'/penduduk?nik=' + ${penduduk.nik}"
+						target="_blank">Lihat</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#pendudukList').DataTable();
+		});
+	</script>
+</body>
+</html>

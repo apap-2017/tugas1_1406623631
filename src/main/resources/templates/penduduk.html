@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Penduduk - Sistem Informasi Kependudukan - Pemerintahan Provinsi DKI Jakarta</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Navbar</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">	
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/">Home</a> 
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/penduduk">Penduduk</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/keluarga">Keluarga</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/penduduk/cari">Cari Data</a>
+				</li>
+			</ul>
+			
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2"
+					   type="text"
+					   placeholder="Search"
+					   aria-label="Search" />
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+					Search
+				</button>
+			</form>
+		</div>
+	</nav>
+  <div class="content penduduk">
+    <div class="breadcrumbs">
+    </div>
+    <h1><center>Lihat &amp; Tambah Data Penduduk</center></h1>
+    <form class="inputAction" action="/penduduk" method="get">
+    <br></br>
+      <h3><center>Lihat Data Penduduk Berdasarkan NIK</center></h3>
+      <br></br>
+      <center><label for="nik">Masukkan Nomor Induk Kependudukan:</label></center>
+      <center><input type="text" name="nik" placeholder="Nomor Induk Kependudukan (NIK)" /></center>
+      <br></br>
+      <center><button type="submit"><span class="icon-penduduk"></span> Lihat</button></center>
+      <br></br><br></br>
+      <center><a class="tambah" th:href="'/penduduk/tambah'"><span class="icon-penduduk-add"></span>Tambah Penduduk</a></center>
+    </form>
+  </div>
+</body>
+</html>
